@@ -4,6 +4,7 @@ import DeleteIcon from '../Assets/DeleteIcon'
 import { dropCredentials } from '../../Redux/Slices/QuoteSlice'
 import { useDispatch } from 'react-redux'
 import { useToasts } from 'react-toast-notifications'
+import EmptyImg from "../../assets/images/7486754.png"
 
 function Bookmarked() {
 
@@ -11,8 +12,8 @@ function Bookmarked() {
     const dispatch = useDispatch()
     const { addToast } = useToasts()
 
-    const handleDelete =(index)=> {
-        dispatch(dropCredentials(index))    
+    const handleDelete = (index) => {
+        dispatch(dropCredentials(index))
         addToast("Quote removed from bookmarks!", { appearance: "success", autoDismiss: true })
     }
 
@@ -27,7 +28,7 @@ function Bookmarked() {
                                 <div className='mb-2 p-3'>- {quote.author}</div>
                             </div>
                         </div>
-                        <DeleteIcon onClick={() => handleDelete(index)}/>
+                        <DeleteIcon onClick={() => handleDelete(index)} />
                     </div>
                 </div>
             ))}
