@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useToasts } from 'react-toast-notifications';
 import { useDispatch } from 'react-redux';
 import { setCredentials } from '../../Redux/Slices/QuoteSlice';
 import { BeatLoader } from "react-spinners"
+import { toast } from 'react-toastify';
 
 function RandomQuotes() {
 
-    const { addToast } = useToasts()
     const dispatch = useDispatch()
 
     const [quote, setQuote] = useState('')
@@ -27,7 +26,7 @@ function RandomQuotes() {
             const data = await response.data;
             setQuote(data)
         } catch (error) {
-            console.error("Error fetching quotes", error)
+            toast.error("Error fetching quotes", error)
         } finally {
             setLoader(false)
         }
@@ -39,7 +38,7 @@ function RandomQuotes() {
             const data = await response.data
             setTags(data)
         } catch (error) {
-            console.error("Error fetching categories", error)
+            toast.error("Error fetching categories")
         }
     };
 
@@ -48,7 +47,7 @@ function RandomQuotes() {
             const updatedBookmarked = [...bookmarked, quote]
             setBookmarked(updatedBookmarked)
             dispatch(setCredentials(updatedBookmarked))
-            addToast("Quote saved!", { appearance: "success", autoDismiss: true })
+            toast.success("Quote saved!")
         }
     };
 

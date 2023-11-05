@@ -3,18 +3,17 @@ import { useSelector } from 'react-redux'
 import DeleteIcon from '../Assets/DeleteIcon'
 import { dropCredentials } from '../../Redux/Slices/QuoteSlice'
 import { useDispatch } from 'react-redux'
-import { useToasts } from 'react-toast-notifications'
-import EmptyImg from "../../assets/images/7486754.png"
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 function Bookmarked() {
 
     const bookmarked = useSelector(state => state.bookmarked)
     const dispatch = useDispatch()
-    const { addToast } = useToasts()
 
     const handleDelete = (index) => {
         dispatch(dropCredentials(index))
-        addToast("Quote removed from bookmarks!", { appearance: "success", autoDismiss: true })
+        toast.success("Quote removed from bookmarks!")
     }
 
     return (
